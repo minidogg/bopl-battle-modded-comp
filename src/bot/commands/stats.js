@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
+
 
 const fs = require('fs');
 
@@ -32,7 +33,7 @@ module.exports = {
             return;
         }
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setTitle(`${user}'s Stats`)
             .setColor('RANDOM')
             .addFields(
