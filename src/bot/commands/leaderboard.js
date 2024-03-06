@@ -22,7 +22,7 @@ module.exports = {
             // Display top 10 accounts or all if less than 10
             const displayCount = Math.min(sortedAccounts.length, 10);
             for (let i = 0; i < displayCount; i++) {
-                embed.addField(`${i + 1}. ${sortedAccounts[i][1].username}`, `Wins: ${sortedAccounts[i][1].wins}, Losses: ${sortedAccounts[i][1].losses}, Level: ${sortedAccounts[i][1].level}`);
+                embed.addFields([`${i + 1}. ${sortedAccounts[i][1].username}`, `Wins: ${sortedAccounts[i][1].wins}, Losses: ${sortedAccounts[i][1].losses}, Level: ${sortedAccounts[i][1].level}`]);
             }
 
             // Create row of buttons for filtering options
