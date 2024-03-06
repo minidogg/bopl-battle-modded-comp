@@ -101,10 +101,18 @@ client.once(Events.ClientReady, readyClient => {
 //was this a thing before?
 client.login(token);
 
-return {send:async (msg,id)=>{
+function hexToRgb(hex) {
+    return hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i
+        , (m, r, g, b) => "#" + r + r + g + g + b + b)
+        .substring(1).match(/.{2}/g)
+        .map(x => parseInt(x, 16));
+  }
+
+  const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+return {send:async (msg,id,color= parseInt(genRanHex(6), 16))=>{
     let channel = await (await client.guilds.fetch("1214694394809024552")).channels.fetch(id)
     channel.send({embeds:[{
-        color: 0x0099ff,
+        color: color,
         title: 'Server',
         description: msg
     }]})

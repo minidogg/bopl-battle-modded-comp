@@ -7,13 +7,13 @@ function startServer(port,botData){
 
     try{
         var botObj = bot(botData)
-        botObj.send("Server up!","1215079919151743047")
+        botObj.send("Server up!","1215079919151743047",0x32CD32)
         express(port,botObj)
     }catch(err){
         console.warn(err)
     }
 
-
+   
 }
 module.exports.startServer = startServer
 
