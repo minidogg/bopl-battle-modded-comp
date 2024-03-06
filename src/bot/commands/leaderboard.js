@@ -1,4 +1,4 @@
-const { SlashCommandBuilder,EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder,EmbedBuilder,ActionRow,ButtonBuilder, ActionRowBuilder } = require('discord.js');
 const fs = require('fs');
 
 module.exports = {
@@ -22,24 +22,24 @@ module.exports = {
             // Display top 10 accounts or all if less than 10
             const displayCount = Math.min(sortedAccounts.length, 10);
             for (let i = 0; i < displayCount; i++) {
-                embed.addFields([`${i + 1}. ${sortedAccounts[i][1].username}`, `Wins: ${sortedAccounts[i][1].wins}, Losses: ${sortedAccounts[i][1].losses}, Level: ${sortedAccounts[i][1].level}`]);
+                embed.addFields([{name:"Username",value:`${i + 1}. ${sortedAccounts[i][1].username}`}, {name:"Wins",value: `${sortedAccounts[i][1].wins}`}, {name:"Losses", value:`${sortedAccounts[i][1].losses}`}, {name:"Level",value:` ${sortedAccounts[i][1].level}`}]);
             }
 
             // Create row of buttons for filtering options
-            const row = new MessageActionRow()
+            const row = new ActionRowBuilder()
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('elo')
                         .setLabel('Filter by Elo')
-                        .setStyle('PRIMARY'),
+                        .setStyle('Primary'),
                     new ButtonBuilder()
                         .setCustomId('wins')
                         .setLabel('Filter by Wins')
-                        .setStyle('PRIMARY'),
+                        .setStyle('Primary'),
                     new ButtonBuilder()
                         .setCustomId('winrate')
                         .setLabel('Filter by Win Rate')
-                        .setStyle('PRIMARY')
+                        .setStyle('Primary')
                 );
 
             await interaction.reply({ embeds: [embed], components: [row] });
