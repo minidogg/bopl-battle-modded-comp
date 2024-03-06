@@ -1,5 +1,5 @@
-function startServer(port,token,botData){
-
+function startServer(port,botData){
+    
     var {bot}=require("./bot/index.js")
     var {express}=require("./express/index.js")
 
