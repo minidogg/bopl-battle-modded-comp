@@ -1,5 +1,6 @@
 const { SlashCommandBuilder,ActionRowBuilder, ButtonBuilder,  ButtonStyle,Collector, } = require('discord.js');
-
+var lobbies = {}
+const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -40,6 +41,8 @@ module.exports = {
                 time: 60000, // 1 minute
                 max: 1
             });
+            var lobbyId = genRanHex(10)
+            lobbies[lobbyId]
 
             collector.on('end', async (collected) => {
                 if (collected.size === 0) {

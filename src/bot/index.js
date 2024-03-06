@@ -56,41 +56,41 @@ client.on("messageCreate",(msg)=>{
 
 
 //respond to certain phrases
-const phrases = require("./phrases.json");
-client.on("messageCreate", (msg) => {
-    try {
-    if (msg.author.bot || msg.content === "" || msg.content.length <= 3) return; //stop stupid spam response
-        const foundPhrase = phrases.phrases.find(([trigger]) => {
-            const words = trigger.toLowerCase().split(" ");
-            return words.some(word => msg.content.toLowerCase().includes(word));
-        });
-        if (foundPhrase) {
-            const [trigger, response] = foundPhrase;
-            console.log(`Responding to "${trigger}" in "${msg.content}" with "${response}"`);
+// const phrases = require("./phrases.json");
+// client.on("messageCreate", (msg) => {
+//     try {
+//     if (msg.author.bot || msg.content === "" || msg.content.length <= 3) return; //stop stupid spam response
+//         const foundPhrase = phrases.phrases.find(([trigger]) => {
+//             const words = trigger.toLowerCase().split(" ");
+//             return words.some(word => msg.content.toLowerCase().includes(word));
+//         });
+//         if (foundPhrase) {
+//             const [trigger, response] = foundPhrase;
+//             console.log(`Responding to "${trigger}" in "${msg.content}" with "${response}"`);
 
-            const dismiss = new ButtonBuilder()
-			.setCustomId('dismiss')
-			.setLabel('Dismiss')
-			.setStyle(ButtonStyle.Danger);
+//             const dismiss = new ButtonBuilder()
+// 			.setCustomId('dismiss')
+// 			.setLabel('Dismiss')
+// 			.setStyle(ButtonStyle.Danger);
 
-		const row = new ActionRowBuilder()
-			.addComponents(dismiss);
+// 		const row = new ActionRowBuilder()
+// 			.addComponents(dismiss);
 
-            msg.reply({content:response,components: [row]});
-        }
-    } catch (error) {
-        console.error("Error while replying:", error);
-    }
-});
+//             msg.reply({content:response,components: [row]});
+//         }
+//     } catch (error) {
+//         console.error("Error while replying:", error);
+//     }
+// });
 
-client.on("interactionCreate",(int)=>{
-    try{
-    if(!int.isButton()||int.customId!="dismiss")return
-    int.message.delete()
-    }catch(err){
-        console.warn(err)
-    }
-})
+// client.on("interactionCreate",(int)=>{
+//     try{
+//     if(!int.isButton()||int.customId!="dismiss")return
+//     int.message.delete()
+//     }catch(err){
+//         console.warn(err)
+//     }
+// })
 
 
 // say we are logged in
