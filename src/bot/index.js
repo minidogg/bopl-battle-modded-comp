@@ -103,6 +103,10 @@ client.login(token);
 
 return {send:async (msg,id)=>{
     let channel = await (await client.guilds.fetch("1214694394809024552")).channels.fetch(id)
-    channel.send(msg)
+    channel.send({embeds:[{
+        color: 0x0099ff,
+        title: 'Server',
+        description: msg
+    }]})
 }}
 }
