@@ -13,7 +13,6 @@ module.exports = {
             subcommand
                 .setName('stats')
                 .setDescription('View user stats')),
-
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand();
         
