@@ -37,7 +37,7 @@ client.on("interactionCreate",(msg)=>{
     }
 })
 
-//message cmds
+//message cmds // second commit  2021-07-31 15:46:58 +0300
 client.on("messageCreate",(msg)=>{
     if(msg.author.bot==true)return
     if(msg.content.toLowerCase().startsWith("hello")||msg.content.toLowerCase().startsWith("hola")||msg.content.toLowerCase().startsWith("hi")){
@@ -51,7 +51,6 @@ client.on("messageCreate",(msg)=>{
 })
 
 
-
 //respond to certain phrases
 const phrases = require("./phrases.json")
 client.on("messageCreate",(msg)=>{
@@ -62,10 +61,11 @@ client.on("messageCreate",(msg)=>{
 
 })
 
-
+// say we are logged in
 client.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
+//was this a thing before?
 client.login(token);
 }
