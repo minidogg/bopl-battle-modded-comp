@@ -52,14 +52,25 @@ client.on("messageCreate",(msg)=>{
 
 
 //respond to certain phrases
-const phrases = require("./phrases.json")
-client.on("messageCreate",(msg)=>{
-    if(msg.author.bot==true||msg.content=="")return
-    try{
-    msg.reply(phrases.phrases.find((e)=>e[0].toLowerCase().includes(msg.content.toLowerCase()))[1])
-    }catch{}
+const phrases = require("./phrases.json");
+client.on("messageCreate", (msg) => {
+    if (msg.author.bot || msg.content === "" || msg.content.length <= 3) return; // Filter out messages with 3 or fewer letters
+    try {
+        const foundPhrase = phrases.phrases.find(([trigger]) => {
+            const words = trigger.toLowerCase().split(" ");
+            return words.some(word => msg.content.toLowerCase().includes(word));
+        });
+        if (foundPhrase) {
+            const [trigger, response] = foundPhrase;
+            console.log(`Responding to "${trigger}" in "${msg.content}" with "${response}"`);
+            msg.reply(response);
+        }
+    } catch (error) {
+        console.error("Error while responding:", error);
+    }
+});
 
-})
+
 
 // say we are logged in
 client.once(Events.ClientReady, readyClient => {
