@@ -15,8 +15,8 @@ module.exports = {
                 .setDescription('View user stats'))
         .addSubcommand(subcommand =>
             subcommand
-                .setName('Delete')
-                .setDescription(`Delete Account Data`)),   
+                .setName('delete')
+                .setDescription('Delete Account Data')),   
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand();
         
@@ -27,11 +27,15 @@ module.exports = {
             case 'stats':
                 await viewStats(interaction);
                 break;
+            case 'delete':
+                await deleteAccount(interaction);
+                break;
             default:
                 await interaction.reply('Invalid subcommand.');
         }
     },
 };
+
 
 async function createAccount(interaction) {
     const userId = interaction.user.id;
@@ -81,4 +85,32 @@ async function viewStats(interaction) {
     }
 
     await interaction.reply(`# Stats for ${userAccount.username}\nWins: ${userAccount.wins}\nLosses: ${userAccount.losses}\nLevel: ${userAccount.level}\n`);
+}
+async function deleteAccount(interaction) {
+    const userId = interaction.user.id;
+
+    let accounts = {};
+    try {
+        const data = fs.readFileSync('accounts.json');
+        accounts = JSON.parse(data);
+    } catch (error) {
+        console.error('Error reading accounts.json:', error);
+        await interaction.reply('An error occurred while trying to delete the account.');
+        return;
+    }
+
+    if (!accounts[userId]) {
+        await interaction.reply('No account found to delete.');
+        return;
+    }
+
+    delete accounts[userId];
+
+    try {
+        fs.writeFileSync('accounts.json', JSON.stringify(accounts, null, 2));
+        await interaction.reply('Account data deleted successfully.');
+    } catch (error) {
+        console.error('Error writing accounts.json:', error);
+        await interaction.reply('An error occurred while trying to delete the account.');
+    }
 }
