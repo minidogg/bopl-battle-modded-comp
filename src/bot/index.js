@@ -3,7 +3,7 @@ module.exports.bot = (botData)=>{
 const fs = require("fs")
 const path = require("path")
 // Require the necessary discord.js classes
-const { Client, Events, GatewayIntentBits, IntentsBitField } = require('discord.js');
+const { Client, Events, GatewayIntentBits, IntentsBitField,ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const {token,guildId,clientId} = botData
 
 // Create a new client instance
@@ -63,13 +63,26 @@ client.on("messageCreate", (msg) => {
         if (foundPhrase) {
             const [trigger, response] = foundPhrase;
             console.log(`Responding to "${trigger}" in "${msg.content}" with "${response}"`);
-            msg.reply(response);
+
+            const dismiss = new ButtonBuilder()
+			.setCustomId('dismiss')
+			.setLabel('Dismiss')
+			.setStyle(ButtonStyle.Danger);
+
+		const row = new ActionRowBuilder()
+			.addComponents(dismiss);
+
+            msg.reply({content:response,components: [row]});
         }
     } catch (error) {
         console.error("Error while replying:", error);
     }
 });
 
+client.on("interactionCreate",(int)=>{
+    if(!int.isButton()||int.customId!="dismiss")return
+    int.message.delete()
+})
 
 
 // say we are logged in
