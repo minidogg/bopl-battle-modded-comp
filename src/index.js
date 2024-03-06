@@ -1,4 +1,4 @@
-function startServer(){
+function startServer(port,token){
 
     var {bot}=require("./bot/index.js")
     var {express}=require("./express/index.js")
@@ -14,4 +14,5 @@ function startServer(){
 }
 module.exports.startServer = startServer
 
-startServer()
+const {token }= require("./bot.json")
+startServer(3000,token)
