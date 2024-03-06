@@ -1,6 +1,11 @@
-# bopl-battle-modded-comp
+# Bopl Battle Competitive bot
 Bopl Battle Modded Comp Bot/Server
 
+# DISCORD
+
+# HOW TO USE
+
+# MODS
 
 # STUFF TO DO!
 1. Fix the account system
