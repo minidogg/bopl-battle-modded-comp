@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, MessageActionRow, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { SlashCommandBuilder, MessageActionRow, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,7 +16,7 @@ module.exports = {
             .setLabel('Join Team 2')
             .setStyle(ButtonStyle.PRIMARY);
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(team1Button, team2Button);
 
         try {
