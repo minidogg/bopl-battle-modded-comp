@@ -108,5 +108,5 @@ return {send:async (msg,id)=>{
         title: 'Server',
         description: msg
     }]})
-}}
+},client:client}
 }
