@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, MessageActionRow, MessageButton, ButtonStyle } = require('discord.js');
+const { SlashCommandBuilder,ActionRowBuilder, ButtonBuilder,  ButtonStyle } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -6,17 +6,17 @@ module.exports = {
         .setDescription('Registers a game lobby'),
 
     async execute(interaction) {
-        const team1Button = new MessageButton()
+        const team1Button = new ButtonBuilder()
             .setCustomId('team1')
             .setLabel('Join Team 1')
-            .setStyle(ButtonStyle.PRIMARY);
+            .setStyle(ButtonStyle.Primary);
 
-        const team2Button = new MessageButton()
+        const team2Button = new ButtonBuilder()
             .setCustomId('team2')
             .setLabel('Join Team 2')
-            .setStyle(ButtonStyle.PRIMARY);
+            .setStyle(ButtonStyle.Primary);
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(team1Button, team2Button);
 
         try {
