@@ -1,6 +1,8 @@
 bot.json
 package-lock.json
 accounts.json
+talkingthing.txt
+
 # Logs
 logs
 *.log
