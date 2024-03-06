@@ -33,7 +33,7 @@ rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commandBodi
 //interaction
 client.on("interactionCreate",(msg)=>{
     if(msg.isCommand()){
-        commands.find(e=>e.data.name == msg.commandName)["execute"](msg)
+        commands.find(e=>e.data.name == msg.commandName)["execute"](msg,client)
     }
 })
 
