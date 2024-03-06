@@ -12,7 +12,11 @@ module.exports = {
         .addSubcommand(subcommand =>
             subcommand
                 .setName('stats')
-                .setDescription('View user stats')),
+                .setDescription('View user stats'))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('Delete')
+                .setDescription(`Delete Account Data`)),   
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand();
         
@@ -50,7 +54,8 @@ async function createAccount(interaction) {
         username: user,
         wins: 0,
         losses: 0,
-        level: 1
+        level: 1,
+        elo: 500
     };
 
     fs.writeFileSync('accounts.json', JSON.stringify(accounts, null, 2));
@@ -75,5 +80,5 @@ async function viewStats(interaction) {
         return;
     }
 
-    await interaction.reply(`# Stats for ${userAccount.username}\nWins: ${userAccount.wins}\nLosses: ${userAccount.losses}\nLevel: ${userAccount.level}`);
+    await interaction.reply(`# Stats for ${userAccount.username}\nWins: ${userAccount.wins}\nLosses: ${userAccount.losses}\nLevel: ${userAccount.level}\n`);
 }

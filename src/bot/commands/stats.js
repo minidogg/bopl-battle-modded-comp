@@ -37,6 +37,7 @@ module.exports = {
             .addField('Wins', userAccount.wins)
             .addField('Losses', userAccount.losses)
             .addField('Level', userAccount.level)
+            .addField('Elo', userAccount.Elo)
             .setColor('RANDOM');
 
         await interaction.reply({ embeds: [embed] });
