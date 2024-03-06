@@ -54,7 +54,7 @@ client.on("messageCreate",(msg)=>{
 //respond to certain phrases
 const phrases = require("./phrases.json");
 client.on("messageCreate", (msg) => {
-    if (msg.author.bot || msg.content === "" || msg.content.length <= 3) return; // Filter out messages with 3 or fewer letters
+    if (msg.author.bot || msg.content === "" || msg.content.length <= 3) return; //stop stupid spam response
     try {
         const foundPhrase = phrases.phrases.find(([trigger]) => {
             const words = trigger.toLowerCase().split(" ");
@@ -66,7 +66,7 @@ client.on("messageCreate", (msg) => {
             msg.reply(response);
         }
     } catch (error) {
-        console.error("Error while responding:", error);
+        console.error("Error while replying:", error);
     }
 });
 
