@@ -1,4 +1,6 @@
-const { SlashCommandBuilder, MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
+
 const fs = require('fs');
 
 module.exports = {
@@ -24,21 +26,21 @@ module.exports = {
             return;
         }
 
-        // Search for the user's account
         const userAccount = accounts[userId];
         if (!userAccount) {
             await interaction.reply('No stats found for your account.');
             return;
         }
 
-        // Create an embed to display the user's stats
         const embed = new MessageEmbed()
             .setTitle(`${user}'s Stats`)
-            .addField('Wins', userAccount.wins)
-            .addField('Losses', userAccount.losses)
-            .addField('Level', userAccount.level)
-            .addField('Elo', userAccount.Elo)
-            .setColor('RANDOM');
+            .setColor('RANDOM')
+            .addFields(
+                { name: 'Wins', value: userAccount.wins, inline: true },
+                { name: 'Losses', value: userAccount.losses, inline: true },
+                { name: 'Level', value: userAccount.level, inline: true },
+                { name: 'Elo', value: userAccount.Elo, inline: true }
+            );
 
         await interaction.reply({ embeds: [embed] });
     },
