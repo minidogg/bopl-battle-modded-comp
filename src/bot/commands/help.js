@@ -17,9 +17,7 @@ module.exports = {
      * @param {Interaction} interaction 
      */
     async execute(interaction) {
-        
-
-        await interaction.reply({ embeds: [embed] });
+        await interaction.reply({ embeds: [helpEmbed] });
     },
 };
 
