@@ -1,4 +1,4 @@
-const { SlashCommandBuilder,ActionRowBuilder, ButtonBuilder,  ButtonStyle } = require('discord.js');
+const { SlashCommandBuilder,ActionRowBuilder, ButtonBuilder,  ButtonStyle,Collector, } = require('discord.js');
 
 
 module.exports = {
@@ -6,6 +6,9 @@ module.exports = {
         .setName('game')
         .setDescription('Registers a game lobby'),
 
+        		        /**
+         * @param {Interaction} interaction 
+         */
     async execute(interaction) {
         const team1Button = new ButtonBuilder()
             .setCustomId('team1')
@@ -26,10 +29,12 @@ module.exports = {
                 components: [row]
             });
 
+
             const filter = (buttonInteraction) => {
                 return buttonInteraction.user.id === interaction.user.id;
             };
 
+            		        /** * @type {Collector}*/
             const collector = interaction.channel.createMessageComponentCollector({
                 filter,
                 time: 60000, // 1 minute
@@ -41,7 +46,8 @@ module.exports = {
                     await interaction.editReply('Timed out. Please try again.');
                     return;
                 }
-
+                
+                /** * @type {Collector}*/
                 const selectedButton = collected.first();
 
                 if (selectedButton.customId === 'team1' || selectedButton.customId === 'team2') {
