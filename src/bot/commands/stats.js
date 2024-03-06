@@ -37,10 +37,10 @@ module.exports = {
             .setTitle(`${user}'s Stats`)
             .setColor('RANDOM')
             .addFields(
-                { name: 'Wins', value: userAccount.wins, inline: true },
-                { name: 'Losses', value: userAccount.losses, inline: true },
-                { name: 'Level', value: userAccount.level, inline: true },
-                { name: 'Elo', value: userAccount.Elo, inline: true }
+                { name: 'Wins', value: userAccount.wins.toString(), inline: true },
+                { name: 'Losses', value: userAccount.losses.toString(), inline: true },
+                { name: 'Level', value: userAccount.level.toString(), inline: true },
+                { name: 'Elo', value: userAccount.elo.toString(), inline: true }
             );
 
         await interaction.reply({ embeds: [embed] });
