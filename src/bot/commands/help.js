@@ -16,13 +16,18 @@ const helpEmbed = {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('help')
-        .setDescription('Shows help'),
-        
+        .setDescription('Shows help')
+        .addStringOption(option =>
+			option
+				.setName('command')
+				.setDescription('Optional option for specifying command.')),
     /**
      * @param {Interaction} interaction 
      */
     async execute(interaction) {
-        await interaction.reply({ embeds: [helpEmbed] });
+        if(interaction.options.getString('command')==""||!interaction.options.getString('command')){
+            await interaction.reply({ embeds: [helpEmbed] });
+        }
     },
 };
 
