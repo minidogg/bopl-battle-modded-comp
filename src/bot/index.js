@@ -5,6 +5,7 @@ const path = require("path")
 // Require the necessary discord.js classes
 const { Client, Events, GatewayIntentBits, IntentsBitField } = require('discord.js');
 const {token,guildId,clientId} = botData
+
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds,GatewayIntentBits.MessageContent,GatewayIntentBits.GuildMessages] });
 
@@ -48,6 +49,19 @@ client.on("messageCreate",(msg)=>{
         return
     }
 })
+
+
+
+//respond to certain phrases
+const phrases = require("./phrases.json")
+client.on("messageCreate",(msg)=>{
+    if(msg.author.bot==true)return
+    try{
+    msg.reply(phrases.phrases.find((e)=>e[0].toLowerCase().includes(msg.content.toLowerCase()))[1])
+    }catch{}
+
+})
+
 
 client.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
