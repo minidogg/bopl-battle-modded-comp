@@ -1,4 +1,12 @@
 const { SlashCommandBuilder } = require('discord.js');
+const helpEmbed = {
+    color: 0x0099ff,
+    title: 'Command List',
+    description: "Here are the available commands:\n"+(+[
+        "/ping - Replies with pong",
+        "/account stats - Gets your stats or optionally you can specify another player's username."
+    ].join("\n"))
+};
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -9,11 +17,8 @@ module.exports = {
      * @param {Interaction} interaction 
      */
     async execute(interaction) {
-        const embed = {
-            color: 0x0099ff,
-            title: 'Command List',
-            description: 'Here are the available commands:\n\n1. Command 1\n2. Command 2\n3. Command 3', // Add commands for stuff you make sorry if im kinda breaking a lot of stuff but dynamic command searching was not working and E.
-        };
+        
+
         await interaction.reply({ embeds: [embed] });
     },
 };
