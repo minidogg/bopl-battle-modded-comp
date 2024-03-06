@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 const fs = require('fs');
 
@@ -32,14 +32,14 @@ module.exports = {
             return;
         }
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setTitle(`${user}'s Stats`)
-            .setColor('RANDOM')
+            .setColor('Random')
             .addFields(
-                { name: 'Wins', value: userAccount.wins, inline: true },
-                { name: 'Losses', value: userAccount.losses, inline: true },
-                { name: 'Level', value: userAccount.level, inline: true },
-                { name: 'Elo', value: userAccount.Elo, inline: true }
+                { name: 'Wins', value: userAccount.wins+"", inline: true },
+                { name: 'Losses', value: userAccount.losses+"", inline: true },
+                { name: 'Level', value: userAccount.level+"", inline: true },
+                { name: 'Elo', value: userAccount.elo+"", inline: true }
             );
 
         await interaction.reply({ embeds: [embed] });
