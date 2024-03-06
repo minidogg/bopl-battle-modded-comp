@@ -55,7 +55,7 @@ client.on("messageCreate",(msg)=>{
 //respond to certain phrases
 const phrases = require("./phrases.json")
 client.on("messageCreate",(msg)=>{
-    if(msg.author.bot==true)return
+    if(msg.author.bot==true||msg.content=="")return
     try{
     msg.reply(phrases.phrases.find((e)=>e[0].toLowerCase().includes(msg.content.toLowerCase()))[1])
     }catch{}
