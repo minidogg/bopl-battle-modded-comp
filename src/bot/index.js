@@ -58,8 +58,8 @@ client.on("messageCreate",(msg)=>{
 //respond to certain phrases
 const phrases = require("./phrases.json");
 client.on("messageCreate", (msg) => {
-    if (msg.author.bot || msg.content === "" || msg.content.length <= 3) return; //stop stupid spam response
     try {
+    if (msg.author.bot || msg.content === "" || msg.content.length <= 3) return; //stop stupid spam response
         const foundPhrase = phrases.phrases.find(([trigger]) => {
             const words = trigger.toLowerCase().split(" ");
             return words.some(word => msg.content.toLowerCase().includes(word));
@@ -84,8 +84,12 @@ client.on("messageCreate", (msg) => {
 });
 
 client.on("interactionCreate",(int)=>{
+    try{
     if(!int.isButton()||int.customId!="dismiss")return
     int.message.delete()
+    }catch(err){
+        console.warn(err)
+    }
 })
 
 
