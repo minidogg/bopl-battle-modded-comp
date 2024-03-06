@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
 
-
 const fs = require('fs');
 
 module.exports = {
@@ -35,7 +34,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle(`${user}'s Stats`)
-            .setColor('RANDOM')
+            .setColor('Random')
             .addFields(
                 { name: 'Wins', value: userAccount.wins.toString(), inline: true },
                 { name: 'Losses', value: userAccount.losses.toString(), inline: true },
