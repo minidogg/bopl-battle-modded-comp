@@ -1,16 +1,16 @@
 {
     "phrases":[
-        ["Where do I get mods","(Insert response here)"],
-        ["install mods","(Insert response here)"],
-        ["get mods","(Insert response here)"],
-        ["not working","(Insert response here)"],
-        ["how to","(Insert response here)"],
-        ["where to","(Insert response here)"],
-        ["how can","(Insert response here)"],
-        ["setup mods","(Insert response here)"],
-        ["","(Insert response here)"],
-        ["Where do I get mods","(Insert response here)"],
-        ["Where do I get mods","(Insert response here)"],
-        ["Where do I get mods","(Insert response here)"]
+        ["Where do I get mods","You can find mods on various platforms such as Nexus Mods, ModDB, Steam Workshop, and specific game forums or websites."],
+        ["install mods","To install mods, you typically need to download the mod files and place them in the appropriate folder of the game directory. Each game may have a different installation process, so make sure to follow the instructions provided by the mod creator or community."],
+        ["get mods","You can get mods from online modding communities, game modding websites, or directly from the game's official mod repository if available."],
+        ["not working","If a mod is not working as expected, first ensure that it is compatible with your game version and installed correctly. You can also check for any troubleshooting guides provided by the mod creator or seek help from the modding community."],
+        ["how to","The process of installing mods can vary depending on the game and the mod itself. Generally, you'll need to download the mod files and follow the installation instructions provided by the mod creator. This might involve copying files to specific folders, using mod managers, or using in-game modding tools."],
+        ["where to","You can find mods in various places, including dedicated modding websites, official game mod repositories, and community forums. Make sure to download mods from reputable sources to avoid any issues."],
+        ["how can","You can install mods by downloading the mod files and following the installation instructions provided by the mod creator. Some mods may require additional tools or software, so make sure to read the mod description carefully."],
+        ["setup mods","To set up mods, you'll typically need to download the mod files and install them in the correct directory of your game installation. Some games may have specific modding tools or launchers to help manage mods."],
+        ["","I'm sorry, could you please provide more information or specify your question?"],
+        ["Where do I get mods","As mentioned earlier, you can find mods on various platforms such as Nexus Mods, ModDB, Steam Workshop, and specific game forums or websites."],
+        ["Where do I get mods","Mods can be obtained from online modding communities, game modding websites, or directly from the game's official mod repository if available."],
+        ["Where do I get mods","You can get mods from dedicated modding websites, official game mod repositories, and community forums. Make sure to download mods from trusted sources to ensure safety and compatibility."]
     ]
 }
