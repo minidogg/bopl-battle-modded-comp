@@ -1,10 +1,10 @@
-function startServer(port,token){
+function startServer(port,token,botData){
 
     var {bot}=require("./bot/index.js")
     var {express}=require("./express/index.js")
 
     try{
-        bot()
+        bot(botData)
         express()
     }catch(err){
         console.warn(err)
@@ -14,5 +14,5 @@ function startServer(port,token){
 }
 module.exports.startServer = startServer
 
-const {token }= require("./bot.json")
-startServer(3000,token)
+const botData = require("./bot.json")
+startServer(3000,botData)
