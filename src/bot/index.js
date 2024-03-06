@@ -19,10 +19,10 @@ const commands = []
 fs.readdirSync(path.resolve("./bot/commands")).filter(e=>e.endsWith(".js")).forEach((e)=>{
     commands.push(require(path.resolve("./bot/commands/")+"/"+e))
 })
-console.log(commands)
+// console.log('commands') // I disabled it cuz i was doing some debugging :)
 
 var commandBodies = commands.map(command=>command.data.toJSON())
-console.log(commandBodies)
+// console.log('commandBodies') // same as above wait,
 
 const rest = new REST({ version: '9' }).setToken(token);
 
@@ -67,8 +67,5 @@ client.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
-
-
-// Log in to Discord with your client's token
 client.login(token);
 }

@@ -1,35 +1,58 @@
-const { SlashCommandBuilder,Message,InteractionResponse,Client, MessageReaction } = require('discord.js');
+const { SlashCommandBuilder, MessageActionRow, MessageButton, ButtonStyle } = require('discord.js');
 
 module.exports = {
-	data: new SlashCommandBuilder()
-		.setName('game')
-		.setDescription('Registers a game lobby'),
-		        /**
-         * @param {Interaction} interaction 
-         * @param {Client} client
-         */
-	async execute(interaction,client) {
-        /**
-         * @type {InteractionResponse}
-         */
-		var reply = await interaction.reply('Starting game. React with :white_check_mark: to join game');
-        var replyMsg = await reply.fetch()
-        await replyMsg.react("✅")
+    data: new SlashCommandBuilder()
+        .setName('game')
+        .setDescription('Registers a game lobby'),
 
-        		        /**
-         * @param {MessageReaction} rct
-         */
-        var listener = (rct)=>{
-            if(rct.message.id!=replyMsg.id)return
-            console.log("E")
-            
-            if(rct.count>0){
-                replyMsg.reply("Someone failed to join as their are to many users in this lobby")
-            }
-            if(rct.emoji.name=="white_check_mark"){
-                replyMsg.reply("Someone joined!")
-            }
+    async execute(interaction) {
+        const team1Button = new MessageButton()
+            .setCustomId('team1')
+            .setLabel('Join Team 1')
+            .setStyle(ButtonStyle.PRIMARY);
+
+        const team2Button = new MessageButton()
+            .setCustomId('team2')
+            .setLabel('Join Team 2')
+            .setStyle(ButtonStyle.PRIMARY);
+
+        const row = new MessageActionRow()
+            .addComponents(team1Button, team2Button);
+
+        try {
+            await interaction.reply({
+                content: 'Starting game. Select your team:',
+                components: [row]
+            });
+
+            const filter = (buttonInteraction) => {
+                return buttonInteraction.user.id === interaction.user.id;
+            };
+
+            const collector = interaction.channel.createMessageComponentCollector({
+                filter,
+                time: 60000, // 1 minute
+                max: 1
+            });
+
+            collector.on('end', async (collected) => {
+                if (collected.size === 0) {
+                    await interaction.editReply('Timed out. Please try again.');
+                    return;
+                }
+
+                const selectedButton = collected.first();
+
+                if (selectedButton.customId === 'team1' || selectedButton.customId === 'team2') {
+                    const selectedTeam = selectedButton.customId === 'team1' ? 'Team 1' : 'Team 2';
+                    await interaction.editReply(`You joined ${selectedTeam}`);
+                } else {
+                    await interaction.editReply('Invalid selection.');
+                }
+            });
+        } catch (error) {
+            console.error('Error executing game command:', error);
+            await interaction.reply({ content: 'An error occurred while processing your command.', ephemeral: true });
         }
-        client.on("messageReactionAdd",listener)
-	},
+    },
 };
