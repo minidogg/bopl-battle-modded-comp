@@ -6,7 +6,7 @@ function startServer(port,botData){
     try{fs.readFileSync("./accounts.json")}catch{fs.writeFileSync("./accounts.json",JSON.stringify({accounts:{}}))}
 
     try{
-        bot(botData)
+        bot(botData).send("Server up!","1215079919151743047")
         express()
     }catch(err){
         console.warn(err)
