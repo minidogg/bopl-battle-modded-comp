@@ -45,6 +45,7 @@ module.exports = {
 
 async function createAccount(interaction) {
     const userId = interaction.user.id;
+    const user = interaction.user.username;
 
     let accounts = {};
     try {
@@ -60,6 +61,7 @@ async function createAccount(interaction) {
     }
 
     accounts[userId] = {
+        username: user,
         wins: 0,
         losses: 0,
         elo: 250
