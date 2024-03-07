@@ -10,3 +10,4 @@ Bopl Battle Modded Comp Bot/Server
 # STUFF TO DO!
 1. Add stuff to the help command
 2. Make game command actually do something
+3. Make leaderboard look good
