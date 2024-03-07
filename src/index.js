@@ -1,4 +1,4 @@
-function startServer(port,botData){
+function startServer(port,botData,mode="dev"){
     const fs = require("fs")
     var {bot}=require("./bot/index.js")
     var {express}=require("./express/index.js")
@@ -7,7 +7,7 @@ function startServer(port,botData){
 
     try{
         var botObj = bot(botData)
-        botObj.send("Server up! Being hosted by "+botData.host,"1215079919151743047",0x32CD32)
+        botObj.send('Server up! Being hosted by '+botData.host+'. In mode: '+mode,"1215079919151743047",0x32CD32)
 
         express(port,botObj)
     }catch(err){
