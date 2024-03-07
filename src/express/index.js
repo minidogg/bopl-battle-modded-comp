@@ -6,6 +6,6 @@ module.exports.express = (port,botObj)=>{
     botObj.send("Express.js server up!","1215079919151743047")
     
     app.listen(port, () => {
-      console.log(`Bot has started on port ${port}`)
+      console.log(`Express server has started on port ${port}`)
     })
 }

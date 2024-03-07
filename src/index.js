@@ -1,4 +1,6 @@
 function startServer(port,botData,mode="dev"){
+    new Promise((resolve,reject)=>{
+
     const fs = require("fs")
     var {bot}=require("./bot/index.js")
     var {express}=require("./express/index.js")
@@ -12,8 +14,10 @@ function startServer(port,botData,mode="dev"){
         express(port,botObj)
     }catch(err){
         console.warn(err)
+        resolve(err)
     }
 
+})
    
 }
 module.exports.startServer = startServer
