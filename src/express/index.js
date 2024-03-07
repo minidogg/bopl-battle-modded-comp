@@ -1,4 +1,4 @@
-module.exports.express = (port)=>{
+module.exports.express = (port, botObj)=>{
   const express = require('express');
   const app = express();
   const fs = require('fs');
@@ -9,13 +9,7 @@ module.exports.express = (port)=>{
   // static pages WILL NOT work for db access
   // we would have to use the router for that
   app.use(express.static("./express/public"))
-
-  app.route('/me').get(function(req, res){
-
-    res.sendFile(__dirname+'/index.js');
-    
-    
-  })
+  
   /*
   app.get("/", (req, res) => {
     res.send("HELLO");
@@ -49,6 +43,10 @@ module.exports.express = (port)=>{
     res.status(404);  
   });
 
+
+  
+  botObj.send("Express.js server up!","1215079919151743047")
+  
   app.listen(port, () => {
     console.log(`Express server has started on port ${port}`)
   })
