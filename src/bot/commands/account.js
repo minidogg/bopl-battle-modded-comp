@@ -1,4 +1,4 @@
-const { SlashCommandBuilder,EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
 
 module.exports = {
@@ -12,7 +12,13 @@ module.exports = {
         .addSubcommand(subcommand =>
             subcommand
                 .setName('stats')
-                .setDescription('View user stats'))
+                .setDescription('View user stats')
+                .addUserOption((option) => option
+                    .setName("selecteduser")
+                    .setDescription("User to get stats of.")
+                    .setRequired(false)
+                )
+            )
         .addSubcommand(subcommand =>
             subcommand
                 .setName('delete')
@@ -39,7 +45,6 @@ module.exports = {
 
 async function createAccount(interaction) {
     const userId = interaction.user.id;
-    const user = interaction.user.username;
 
     let accounts = {};
     try {
@@ -55,11 +60,9 @@ async function createAccount(interaction) {
     }
 
     accounts[userId] = {
-        username: user,
         wins: 0,
         losses: 0,
-        level: 1,
-        elo: 500
+        elo: 250
     };
 
     fs.writeFileSync('accounts.json', JSON.stringify(accounts, null, 2));
@@ -68,8 +71,7 @@ async function createAccount(interaction) {
 }
 
 async function viewStats(interaction) {
-    const user = interaction.user.username; // Get the username of the user who used the command
-    const userId = interaction.user.id; // Get the ID of the user who used the command
+    let userId = interaction.user.id; // Get the ID of the user who used the command
     
     // Load accounts from the JSON file
     let accounts = {};
@@ -82,19 +84,24 @@ async function viewStats(interaction) {
         return;
     }
 
+    if(interaction.options.getUser('selecteduser') != null && interaction.options.getUser('selecteduser') != undefined) {
+        userId = interaction.options.getUser('selecteduser').id;
+        console.log(interaction.options.getUser('selecteduser').id);
+    }
+
     const userAccount = accounts[userId];
     if (!userAccount) {
-        await interaction.reply('No stats found for your account.');
+        await interaction.reply('No stats found for <@!'+userId+'>.');
         return;
     }
 
     const embed = new EmbedBuilder()
-        .setTitle(`${user}'s Stats`)
+        .setDescription(`### <@!${userId}>'s Stats`)
         .setColor('Random')
         .addFields(
             { name: 'Wins', value: userAccount.wins.toString(), inline: true },
             { name: 'Losses', value: userAccount.losses.toString(), inline: true },
-            { name: 'Level', value: userAccount.level.toString(), inline: true },
+            //{ name: 'Level', value: userAccount.level.toString(), inline: true },
             { name: 'Elo', value: userAccount.elo.toString(), inline: true }
         );
 
