@@ -8,6 +8,5 @@ Bopl Battle Modded Comp Bot/Server
 # MODS
 
 # STUFF TO DO!
-1. Fix the account system
-2. Add stuff to the help command
-3. Fix the game system with button Messages
+1. Add stuff to the help command
+2. Make game command actually do something
