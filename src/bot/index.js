@@ -110,7 +110,7 @@ function hexToRgb(hex) {
 
   const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 return {send:async (msg,id,color= parseInt(genRanHex(6), 16))=>{
-    let channel = await (await client.guilds.fetch("1214694394809024552")).channels.fetch(id)
+    let channel = await (await client.guilds.fetch(guildId)).channels.fetch(id)
     channel.send({embeds:[{
         color: color,
         title: 'Server',
