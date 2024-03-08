@@ -2,38 +2,21 @@ module.exports.express = (port, botObj)=>{
   const express = require('express');
   const app = express();
   const fs = require('fs');
+  var ourApi = require('./api_functions.js');
   
   // now exposes everything in the 'public' folder.
-  // so if you go to index.html it will show it.
-  // theres no path traversal with .. so we're safe on that front.
-  // static pages WILL NOT work for db access
-  // we would have to use the router for that
+  // won't work for db, ask wackymoder to do that.
   app.use(express.static("./express/public"))
   
-  /*
-  app.get("/", (req, res) => {
-    res.send("HELLO");
-    res.send("little bro");
-    res.end();
-  })
-  */
 
-  app.get('/api/account/:userId', (req, res) => {
-    //res.send(req.params)
-    
-    const data = fs.readFileSync('accounts.json');
-    var accounts = JSON.parse(data);
+  // Did that :D
+/*
+  shit api shit that should be less shit so we should move this shit to
+  another less shittier file
+*/
+  app.get('/api/account/:userId', ourApi.getAccountData)
 
-    if(accounts[req.params.userId]) {
-      res.send(accounts[req.params.userId]);
-    } else {
-      res.send({
-        "error": "No data for this account",
-        "errorId": 1005,
-      })
-      res.status(404);
-    }
-  })
+
 
   // if we get here its a 404
   app.use(function(req, res){
@@ -43,10 +26,8 @@ module.exports.express = (port, botObj)=>{
     res.status(404);  
   });
 
-
-  
   botObj.send("Express.js server up!","1215079919151743047")
-  
+
   app.listen(port, () => {
     console.log(`Express server has started on port ${port}`)
   })
