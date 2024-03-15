@@ -1,0 +1,1 @@
+turns out my code is not working. sooooooooooooooo... backups are at ../.././bot/server/backups/

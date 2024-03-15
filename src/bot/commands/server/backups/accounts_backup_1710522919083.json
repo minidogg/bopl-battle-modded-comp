@@ -1,0 +1,34 @@
+{
+  "accounts": {},
+  "750830044443705486": {
+    "username": "wackymoder",
+    "wins": 81,
+    "losses": 12,
+    "level": 5,
+    "elo": 518
+  },
+  "906283767734362144": {
+    "username": "abstractmelon",
+    "wins": 4,
+    "losses": 15,
+    "elo": 148
+  },
+  "699152711374864454": {
+    "username": "shadowdev",
+    "wins": 10,
+    "losses": 13,
+    "elo": 81
+  },
+  "1170452569848549429": {
+    "username": "Unlucky Crafter",
+    "wins": 21,
+    "losses": 5,
+    "elo": 421
+  },
+  "880898058483814430": {
+    "username": "reallybaddev",
+    "wins": 8,
+    "losses": 1,
+    "elo": 250
+  }
+}

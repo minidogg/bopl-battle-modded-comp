@@ -103,7 +103,7 @@ async function viewStats(interaction) {
         .addFields(
             { name: 'Wins', value: userAccount.wins.toString(), inline: true },
             { name: 'Losses', value: userAccount.losses.toString(), inline: true },
-            //{ name: 'Level', value: userAccount.level.toString(), inline: true },
+            //{ name: 'Level', value: userAccount.level.toString(), inline: true }, hey, you commented out my level command :(
             { name: 'Elo', value: userAccount.elo.toString(), inline: true }
         );
 

@@ -16,7 +16,7 @@ module.exports = {
 			.setTitle('Pong!')
 			.setDescription(`The ping is ${sent.createdTimestamp - interaction.createdTimestamp}ms!`)
 			.setTimestamp()
-			.setFooter({ text: 'Hello!' });
+			.setFooter({ text: 'BoplBot' });
 			await interaction.reply({ embeds: [exampleEmbed] });
 			await sent.delete();
 		});

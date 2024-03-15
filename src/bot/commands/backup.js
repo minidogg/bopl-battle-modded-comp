@@ -8,7 +8,7 @@ module.exports = {
         .setDescription('Creates a backup of the accounts file.'),
     async execute(interaction) {
         // Check if the user has admin permissions
-        if (!interaction.member.permissions.has('ADMINISTRATOR')) {
+        if (!interaction.member.permissions.has('Administrator')) {
             return interaction.reply({ content: 'You do not have permission to use this command.', ephemeral: true });
         }
 
